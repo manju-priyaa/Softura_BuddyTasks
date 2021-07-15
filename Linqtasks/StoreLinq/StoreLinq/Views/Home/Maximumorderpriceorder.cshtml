@@ -1,0 +1,37 @@
+﻿@model IEnumerable<StoreLinq.Models.MaximumorderModel>
+
+@{
+    ViewBag.Title = "Maximumorderpriceorder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<h2>Maximum order rice order and month wise</h2>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>Date Of Purchase</th>
+        <th>POID</th>
+        <th>Price</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Date.ToString("MMMM")- @item.Date.Year</td>
+            <td>@item.POID.POID</td>
+
+            <td>@item.Price</td>
+        </tr>
+    }
+
+</table>

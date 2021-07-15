@@ -1,0 +1,30 @@
+﻿@model IEnumerable<StoreLinq.Models.ListPurchaseModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<h2>Welcome to the Store</h2>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>1. @Html.ActionLink("List of Purchase order against Customer", "ListofPurchaseOrder")</th>
+    </tr>
+    <tr>
+        <th>2. @Html.ActionLink("Month wise customer report with products", "Monthwisecustomerreport")</th>
+    </tr>
+    <tr>
+        <th>3. @Html.ActionLink("Product sales report Month ", "ProductsalesreportMonthwise")</th>
+    </tr>
+    <tr>
+        <th>4. @Html.ActionLink("Maximum order rice order and month wise", "Maximumorderpriceorder")</th>
+    </tr>
+
+</table>
+<br />
+<br />

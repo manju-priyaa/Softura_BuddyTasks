@@ -1,0 +1,59 @@
+﻿@model IEnumerable<StoreLinq.Models.ListPurchaseModel>
+
+@{
+    ViewBag.Title = "ListofPurchaseOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<h2>List of Purchase order against Customer</h2>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CustomerName.Name
+            </td>
+            <td>
+                @item.POID.POID
+            </td>
+            <td>
+                @item.ProductName.Name
+            </td>
+            <td>
+                @item.Price.Price
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<br />
+
+

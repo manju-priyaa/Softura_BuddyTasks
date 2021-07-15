@@ -1,0 +1,40 @@
+﻿@model IEnumerable<StoreLinq.Models.ProductsalesModel>
+
+@{
+    ViewBag.Title = "ProductsalesreportMonthwise";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<h2>Product sales report Month wise</h2>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>Month</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+            <td>@item.Date.ToString("MMMM")-@item.Date.Year</td>
+            <td>@item.ProductName.Name</td>
+
+            <td>@item.Quantity.Qty</td>
+        </tr>
+    }
+
+</table>
+<br />
+<br />
