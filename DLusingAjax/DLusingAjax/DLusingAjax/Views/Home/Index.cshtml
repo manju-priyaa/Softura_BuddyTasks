@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h2>Drop Down  List using Ajax</h2>
+    <br />
+    <br />
+    <h3>Select Your Country, State and District form the below Drop Down</h3>
+    <br />
+    <br />
+    <br />
+    <form method="post">
+        <label> Country : </label>
+        <select id="Country" name="Country" class="form-control">
+
+            <option value="-1" disabled>Please Select The Country</option>
+            @foreach (var country in ViewBag.countries)
+            {
+                <option value="@country.CountryId">@country.CountryName</option>
+            }
+        </select>
+        <br />
+        <label> State : </label>
+        <select id="State" name="State" class="form-control">
+
+        </select>
+        <br />
+        <label> District : </label>
+        <select id="District" name="District" class="form-control">
+
+        </select>
+        <br />
+    </form>
+</body>
+<br />
+<br />
+<br />
+<br />
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $("#Country").on('change', function () {
+                var countryId = $("#Country option:selected").val(); 
+                $.ajax({
+                    type: 'GET',
+                    url: "Home/StateDL",
+                    data: { CountryId: countryId },
+                    dataType: 'JSON',
+                    success: function (res) {
+                        if (res.msg == "success") {
+                            var stringifys = JSON.stringify(res.data);
+                            var states = JSON.parse(stringifys);
+                            var state = '<option value="-1"> Select a Value </option>'
+                            for (var i = 0; i < states.length; i++) {
+                                state += '<option value="' + states[i].Id + '">' + states[i].Name + '</option>';
+                            }
+
+                            $("#State").html(state);
+                        }
+                        },
+                    error: function (res) {
+                        alert("Sorry There is an Error")
+                    }
+
+                });
+
+            });
+            $("#State").on("change", function () {
+                var stateId = $("#State option:selected").val();
+                $.ajax({
+                    type: 'GET',
+                    url: "Home/DistrictDL",
+                    data: { StateId: stateId },
+                    dataType: 'JSON',
+                    success: function (resp) {
+                        if (resp.msg == "success") {
+                            var stringifydistrict = JSON.stringify(resp.data);
+                            var district = JSON.parse(stringifydistrict);
+                            var d = '<option value="-1">Please select a value</option>'
+                            for (var j = 0; j < district.length; j++) {
+                                d += '<option value="' + district[j].Id + '">' + district[j].Name + '</option>';
+                                
+                            }
+                            $("#District").html(d);
+                        }
+                    },
+                    error: function (response) {
+                        alert("Sorry There is an Error");
+                    }
+                });
+
+            });
+            
+        });
+
+    </script>
+
+}
+
+
